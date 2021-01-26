@@ -35,7 +35,7 @@ export default function SignIn(props) {
                     Sign in
                 </Typography>
 
-                <form className={classes.form} noValidate>
+                <form className={classes.form} onSubmit={handleLogin}>
 
                     <TextField
                         variant="outlined"
@@ -60,8 +60,7 @@ export default function SignIn(props) {
                         autoComplete="current-password" />
 
                     <Button
-                        onClick={handleLogin}
-                        type="button"
+                        type="submit"
                         fullWidth
                         variant="contained"
                         color="primary"
