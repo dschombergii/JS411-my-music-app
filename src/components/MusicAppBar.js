@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MusicAppBar(props) {
 
     const classes = useStyles();
-    const { state, loggedIn, handleLogin } = props
+    const { loggedIn, handleLogin } = props
 
     return (
         <div className={classes.root}>
