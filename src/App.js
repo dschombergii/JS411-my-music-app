@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './App.css';
 
 import MusicAppBar from './components/MusicAppBar'
 import SignIn from './components/SignIn'
 import MusicDashboard from './components/MusicDashboard'
-import Notifications from './components/Notifications';
 
 export default function App() {
 
