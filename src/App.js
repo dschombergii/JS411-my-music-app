@@ -1,25 +1,59 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react'
 import './App.css';
 
-function App() {
+import MusicAppBar from './components/MusicAppBar'
+import SignIn from './components/SignIn'
+import MusicDashboard from './components/MusicDashboard'
+import Notifications from './components/Notifications';
+
+export default function App() {
+
+  const [state, setState] = useState({
+    loggedIn: false,
+    online: true,
+    masterVolume: 80,
+    quality: 2,
+  })
+
+
+  const handleLogin = () => {
+    setState({ ...state, loggedIn: state.loggedIn ? false : true })
+  }
+
+  const handleOnline = (event) => {
+    setState({ ...state, [event.target.name]: state.online ? false : true });
+  };
+
+  const handleVolume = (event, newValue) => {
+    setState({ ...state, masterVolume: newValue });
+  }
+
+  const handleQuality = (event, value) => {
+    setState({ ...state, quality: event.target.value })
+  }
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+
+      <MusicAppBar
+        state={state}
+        loggedIn={state.loggedIn}
+        handleLogin={handleLogin} />
+      {state.loggedIn ?
+        <div>
+          <MusicDashboard
+            state={state}
+            handleOnline={handleOnline}
+            handleVolume={handleVolume}
+            handleQuality={handleQuality} />
+        </div> :
+        <SignIn
+          handleLogin={handleLogin} />}
+
     </div>
   );
 }
 
-export default App;
+
